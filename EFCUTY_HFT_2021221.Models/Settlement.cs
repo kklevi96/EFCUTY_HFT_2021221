@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EFCUTY_HFT_2021221.Models
 {
-    class Student
+    class Settlement
     {
     }
 }

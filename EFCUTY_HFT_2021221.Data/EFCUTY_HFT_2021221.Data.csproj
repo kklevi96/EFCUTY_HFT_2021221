@@ -5,15 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="People.mdf" />
-    <None Remove="People_log.ldf" />
+    <None Remove="Country.mdf" />
+    <None Remove="Country_log.ldf" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="People.mdf">
+    <Content Include="Country.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="People_log.ldf">
+    <Content Include="Country_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
