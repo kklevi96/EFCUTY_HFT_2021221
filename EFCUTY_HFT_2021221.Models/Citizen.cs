@@ -28,7 +28,5 @@ namespace EFCUTY_HFT_2021221.Models
         public DateTime BirthDate { get; set; }
 
         public string Name { get; set; }
-
-
     }
 }
