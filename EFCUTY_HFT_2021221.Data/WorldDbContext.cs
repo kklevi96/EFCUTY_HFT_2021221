@@ -56,11 +56,14 @@ namespace EFCUTY_HFT_2021221.Data
                     .WithMany(settlement => settlement.Citizens)
                     .HasForeignKey(citizen => citizen.SettlementID)
                     .OnDelete(DeleteBehavior.Restrict);
+
+
             });
-            Country Canada = new() { ID = 1 };
-            Country Hungary = new() { ID = 2 };
-            Country Ukraine = new() { ID = 3 };
-            Country Bulgaria = new() { ID = 4 };
+
+            Country Canada = new() { CountryID = 1 };
+            Country Hungary = new() { CountryID = 2 };
+            Country Ukraine = new() { CountryID = 3 };
+            Country Bulgaria = new() { CountryID = 4 };
 
             Settlement Plovdiv = new() { SettlementID = 1, CountryID = 4, Population = 180000 };
             Settlement Budapest = new() { SettlementID = 2, CountryID = 2, Population = 1800000 };
