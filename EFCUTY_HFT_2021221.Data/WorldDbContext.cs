@@ -13,6 +13,7 @@ namespace EFCUTY_HFT_2021221.Data
     {
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Settlement> Settlements { get; set; }
+        public virtual DbSet<Citizen> Citizens { get; set; }
 
         public WorldDbContext()
         {
@@ -56,6 +57,23 @@ namespace EFCUTY_HFT_2021221.Data
                     .HasForeignKey(citizen => citizen.SettlementID)
                     .OnDelete(DeleteBehavior.Restrict);
             });
+            Country Canada = new() { ID = 1 };
+            Country Hungary = new() { ID = 2 };
+            Country Ukraine = new() { ID = 3 };
+            Country Bulgaria = new() { ID = 4 };
+
+            Settlement Plovdiv = new() { SettlementID = 1, CountryID = 4, Population = 180000 };
+            Settlement Budapest = new() { SettlementID = 2, CountryID = 2, Population = 1800000 };
+            Settlement Kiev = new() { SettlementID = 3, CountryID = 3, Population = 3500000 };
+            Settlement Lvov = new() { SettlementID = 4, CountryID = 4, Population = 1850000 };
+
+            Citizen citizen = new() { PersonID = 1, BirthDate = new DateTime(1996, 12, 11), Name = "Török Tamás", SettlementID = 2, CitizenshipID = 2 };
+            Citizen citizen2 = new() { PersonID = 2, BirthDate = new DateTime(1647, 5, 13), Name = "Orbán Viktor", SettlementID = 2, CitizenshipID = 2 };
+            Citizen citizen3 = new() { PersonID = 3, BirthDate = new DateTime(1920, 12, 11), Name = "Joe Trump", SettlementID = 4, CitizenshipID = 1 };
+
+            modelBuilder.Entity<Country>().HasData(Canada, Hungary, Ukraine, Bulgaria);
+            modelBuilder.Entity<Settlement>().HasData(Plovdiv, Budapest, Kiev, Lvov);
+            modelBuilder.Entity<Citizen>().HasData(citizen, citizen2, citizen3);
 
         }
     }
