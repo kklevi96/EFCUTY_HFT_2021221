@@ -32,9 +32,9 @@ namespace EFCUTY_HFT_2021221.Data
             }
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            modelBuilder.Entity<Settlement>(entity =>
+            builder.Entity<Settlement>(entity =>
             {
                 entity
                     .HasOne(settlement => settlement.Country)
@@ -43,7 +43,7 @@ namespace EFCUTY_HFT_2021221.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-            modelBuilder.Entity<Citizen>(entity =>
+            builder.Entity<Citizen>(entity =>
             {
                 entity
                     .HasOne(citizen => citizen.Citizenship)
@@ -74,9 +74,9 @@ namespace EFCUTY_HFT_2021221.Data
             Citizen citizen2 = new() { PersonID = 2, BirthDate = new DateTime(1647, 5, 13), Name = "Orbán Viktor", SettlementID = 2, CitizenshipID = 2 };
             Citizen citizen3 = new() { PersonID = 3, BirthDate = new DateTime(1920, 12, 11), Name = "Joe Trump", SettlementID = 4, CitizenshipID = 1 };
 
-            modelBuilder.Entity<Country>().HasData(Canada, Hungary, Ukraine, Bulgaria);
-            modelBuilder.Entity<Settlement>().HasData(Plovdiv, Budapest, Kiev, Lvov);
-            modelBuilder.Entity<Citizen>().HasData(citizen, citizen2, citizen3);
+            builder.Entity<Country>().HasData(Canada, Hungary, Ukraine, Bulgaria);
+            builder.Entity<Settlement>().HasData(Plovdiv, Budapest, Kiev, Lvov);
+            builder.Entity<Citizen>().HasData(citizen, citizen2, citizen3);
 
         }
     }
