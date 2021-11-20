@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace EFCUTY_HFT_2021221.Models
 {
+    [Table("Settlements")]
     public class Settlement
     {
         [Key]
@@ -26,7 +27,5 @@ namespace EFCUTY_HFT_2021221.Models
 
         [ForeignKey(nameof(Country))]
         public int CountryID { get; set; }
-
-        public int MyProperty { get; set; }
     }
 }

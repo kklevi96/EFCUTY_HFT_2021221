@@ -5,9 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EFCUTY_HFT_2021221.Models
 {
+    [Table("Countries")]
     public class Country
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CountryID { get; set; }
 
         [NotMapped]
