@@ -57,7 +57,6 @@ namespace EFCUTY_HFT_2021221.Data
                     .HasForeignKey(citizen => citizen.SettlementID)
                     .OnDelete(DeleteBehavior.Restrict);
 
-
             });
 
             Country Canada = new() { CountryID = 1 };
