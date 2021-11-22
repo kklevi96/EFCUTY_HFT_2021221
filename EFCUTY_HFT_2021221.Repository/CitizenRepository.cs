@@ -40,5 +40,10 @@ namespace EFCUTY_HFT_2021221.Repository
             db.Remove(Read(id));
             db.SaveChanges();
         }
+
+        public IQueryable<Citizen> GetAll()
+        {
+            return db.Citizens;
+        }
     }
 }

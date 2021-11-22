@@ -1,4 +1,5 @@
 ﻿using EFCUTY_HFT_2021221.Models;
+using System.Linq;
 
 namespace EFCUTY_HFT_2021221.Repository
 {
@@ -8,5 +9,7 @@ namespace EFCUTY_HFT_2021221.Repository
         void Delete(int id);
         Country Read(int id);
         void Update(Country country);
+        IQueryable<Country> GetAll();
+
     }
 }
