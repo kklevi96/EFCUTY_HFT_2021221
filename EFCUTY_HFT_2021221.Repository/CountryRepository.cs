@@ -31,7 +31,8 @@ namespace EFCUTY_HFT_2021221.Repository
         {
             var oldCountry = Read(country.CountryID);
             oldCountry.Name = country.Name;
-            oldCountry.HDI = country.HDI;
+            oldCountry.TotalGDPInMillionUSD = country.TotalGDPInMillionUSD;
+            oldCountry.IsOECDMember = country.IsOECDMember;
             db.SaveChanges();
         }
 
@@ -45,5 +46,7 @@ namespace EFCUTY_HFT_2021221.Repository
         {
             return db.Countries;
         }
+
+
     }
 }

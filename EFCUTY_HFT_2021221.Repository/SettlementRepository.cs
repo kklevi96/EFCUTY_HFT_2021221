@@ -31,6 +31,9 @@ namespace EFCUTY_HFT_2021221.Repository
         {
             var oldSettlement = Read(settlement.SettlementID);
             oldSettlement.Population = settlement.Population;
+            oldSettlement.HDI = settlement.HDI;
+            oldSettlement.SettlementName = settlement.SettlementName;
+            oldSettlement.CountryID = settlement.CountryID;
             db.SaveChanges();
         }
 
