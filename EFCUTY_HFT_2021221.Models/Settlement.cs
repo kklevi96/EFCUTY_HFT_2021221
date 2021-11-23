@@ -18,7 +18,9 @@ namespace EFCUTY_HFT_2021221.Models
         public string SettlementName { get; set; }
 
         public int Population { get; set; }
-        
+
+        public double HDI { get; set; }
+
         [NotMapped]
         public virtual Country Country { get; set; }
 

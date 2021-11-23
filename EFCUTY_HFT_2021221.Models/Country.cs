@@ -20,7 +20,9 @@ namespace EFCUTY_HFT_2021221.Models
 
         public string Name { get; set; }
 
-        public double HDI { get; set; }
+        public int TotalGDPInMillionUSD { get; set; }
+
+        public bool IsOECDMember { get; set; }
 
         public Country()
         {
