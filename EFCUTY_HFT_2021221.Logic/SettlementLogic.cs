@@ -45,19 +45,27 @@ namespace EFCUTY_HFT_2021221.Logic
             settlementRepository.Delete(id);
         }
 
-        public IEnumerable<Settlement> GetAll()
+        public IEnumerable<Settlement> ReadAll()
         {
-            return settlementRepository.GetAll();
+            return settlementRepository.ReadAll();
         }
 
 
         //noncrud 5: list all settlements which have no people with a criminal record
         public IEnumerable<Settlement> GoodSettlements()
         {
-            return from x in settlementRepository.GetAll()
-                   where x.Citizens.All(y=>!y.HasCriminalRecord)
+            return from x in settlementRepository.ReadAll()
+                   where x.Citizens.All(y => !y.HasCriminalRecord)
                    select x;
         }
 
+        //noncrud plus: what is the average HDI of the settlements in the countries
+        public IEnumerable<KeyValuePair<string, double>> AvgHDIByCountries()
+        {
+            return from x in settlementRepository.ReadAll()
+                   group x by x.Country.Name into g
+                   select new KeyValuePair<string, double>
+                   (g.Key, g.Average(t => t.HDI));
+        }
     }
 }
