@@ -14,7 +14,6 @@ namespace EFCUTY_HFT_2021221.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Required]
         public int PersonID { get; set; }
 
         public string Name { get; set; }
