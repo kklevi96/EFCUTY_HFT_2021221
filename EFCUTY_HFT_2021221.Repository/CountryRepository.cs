@@ -42,7 +42,7 @@ namespace EFCUTY_HFT_2021221.Repository
             db.SaveChanges();
         }
 
-        public IQueryable<Country> GetAll()
+        public IQueryable<Country> ReadAll()
         {
             return db.Countries;
         }

@@ -43,7 +43,7 @@ namespace EFCUTY_HFT_2021221.Repository
             db.SaveChanges();
         }
 
-        public IQueryable<Settlement> GetAll()
+        public IQueryable<Settlement> ReadAll()
         {
             return db.Settlements;
         }

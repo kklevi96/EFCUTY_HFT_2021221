@@ -9,6 +9,6 @@ namespace EFCUTY_HFT_2021221.Repository
         void Delete(int id);
         Settlement Read(int id);
         void Update(Settlement settlement);
-        IQueryable<Settlement> GetAll();
+        IQueryable<Settlement> ReadAll();
     }
 }

@@ -9,7 +9,7 @@ namespace EFCUTY_HFT_2021221.Repository
         void Delete(int id);
         Country Read(int id);
         void Update(Country country);
-        IQueryable<Country> GetAll();
+        IQueryable<Country> ReadAll();
 
     }
 }
