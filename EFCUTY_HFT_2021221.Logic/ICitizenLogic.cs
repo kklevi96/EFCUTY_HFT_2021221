@@ -7,7 +7,9 @@ namespace EFCUTY_HFT_2021221.Logic
     {
         void Create(Citizen citizen);
         void Delete(int id);
-        IEnumerable<Citizen> GetAll();
+        IEnumerable<Citizen> DevelopedCriminals();
+        IEnumerable<Citizen> ReadAll();
+        IEnumerable<Citizen> PoorOldPeople();
         Citizen Read(int id);
         void Update(Citizen settlement);
     }

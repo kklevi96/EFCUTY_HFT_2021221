@@ -21,7 +21,7 @@ namespace EFCUTY_HFT_2021221.Logic
         {
             DateTime earliest = new(1900, 01, 01);
             if (citizen.BirthDate < earliest)
-                throw new ArgumentException("BirthDate is too early! That citizen is dead now.");
+                throw new ArgumentException("BirthDate is too early! That citizen is surely dead now.");
             citizenRepository.Create(citizen);
         }
 
@@ -40,24 +40,23 @@ namespace EFCUTY_HFT_2021221.Logic
             citizenRepository.Delete(id);
         }
 
-        public IEnumerable<Citizen> GetAll()
+        public IEnumerable<Citizen> ReadAll()
         {
-            return citizenRepository.GetAll();
+            return citizenRepository.ReadAll();
         }
 
         //noncrud 3: who are the people who have criminal record and live in a settlement with a HDI greater than 0.9?
         public IEnumerable<Citizen> DevelopedCriminals()
         {
-            return from x in citizenRepository.GetAll()
-                   where x.HomeSettlement.HDI > 0.9 && x.HasCriminalRecord
+            return from x in citizenRepository.ReadAll()
+                   where x.Settlement.HDI > 0.9 && x.HasCriminalRecord
                    select x;
         }
-        
+
         //noncrud 4: who are the people who are older than 80 years and live in a country which is not an OECD member?
         public IEnumerable<Citizen> PoorOldPeople()
         {
-
-            return from x in citizenRepository.GetAll()
+            return from x in citizenRepository.ReadAll()
                    where (DateTime.Now - x.BirthDate).TotalDays > 29220 && !x.Citizenship.IsOECDMember
                    select x;
         }

@@ -7,8 +7,11 @@ namespace EFCUTY_HFT_2021221.Logic
     {
         void Create(Country country);
         void Delete(int id);
-        IEnumerable<Country> GetAll();
+        IEnumerable<Country> ReadAll();
+        IEnumerable<Country> PoorCountries();
+        IEnumerable<KeyValuePair<string, int>> PopulationOECD();
         Country Read(int id);
+        bool ThisNameExists(string name);
         void Update(Country country);
     }
 }

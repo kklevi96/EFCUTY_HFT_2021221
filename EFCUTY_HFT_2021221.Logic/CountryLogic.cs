@@ -17,7 +17,7 @@ namespace EFCUTY_HFT_2021221.Logic
             this.countryRepository = countryRepository;
         }
 
-       
+
 
         public void Create(Country country)
         {
@@ -47,16 +47,16 @@ namespace EFCUTY_HFT_2021221.Logic
             countryRepository.Delete(id);
         }
 
-        public IEnumerable<Country> GetAll()
+        public IEnumerable<Country> ReadAll()
         {
-            return countryRepository.GetAll();
+            return countryRepository.ReadAll();
         }
 
         //noncrud 1: which countries have a GDP per capita less than 10000 USD?
-        
+
         public IEnumerable<Country> PoorCountries()
         {
-            return from x in countryRepository.GetAll()
+            return from x in countryRepository.ReadAll()
                    where x.TotalGDPInMillionUSD / CountPopulation(x) < 10
                    select x;
         }
@@ -71,11 +71,11 @@ namespace EFCUTY_HFT_2021221.Logic
         }
 
         //noncrud 2: list the population of the OECD member countries
-        public IEnumerable<KeyValuePair<string,int>> PopulationOECD()
+        public IEnumerable<KeyValuePair<string, int>> PopulationOECD()
         {
-            return from x in countryRepository.GetAll()
+            return from x in countryRepository.ReadAll()
                    where x.IsOECDMember
-                   select new KeyValuePair<string,int>
+                   select new KeyValuePair<string, int>
                    (
                        x.Name,
                        CountPopulation(x)
@@ -90,9 +90,10 @@ namespace EFCUTY_HFT_2021221.Logic
             //select x;
             //return a.Count() > 0
 
-            return countryRepository.GetAll()
+            return countryRepository.ReadAll()
                 .Any(x => x.Name == name);
         }
+
 
     }
 }
