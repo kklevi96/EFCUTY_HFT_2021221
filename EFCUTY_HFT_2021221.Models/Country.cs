@@ -29,5 +29,15 @@ namespace EFCUTY_HFT_2021221.Models
             Settlements = new HashSet<Settlement>();
             Citizens = new HashSet<Citizen>();
         }
+
+        public override int GetHashCode()
+        {
+            return this.Name.GetHashCode() * this.CountryID.GetHashCode() + this.TotalGDPInMillionUSD.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return this.GetHashCode().Equals(obj.GetHashCode());
+        }
     }
 }

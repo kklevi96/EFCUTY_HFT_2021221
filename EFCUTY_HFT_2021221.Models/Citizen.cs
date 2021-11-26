@@ -14,6 +14,7 @@ namespace EFCUTY_HFT_2021221.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Required]
         public int PersonID { get; set; }
 
         public string Name { get; set; }
@@ -32,13 +33,22 @@ namespace EFCUTY_HFT_2021221.Models
         public int CitizenshipID { get; set; }
         
         [NotMapped]
-        public virtual Settlement HomeSettlement { get; set; }
+        [JsonIgnore]
+        public virtual Settlement Settlement { get; set; }
 
-        [ForeignKey(nameof(Settlement))]
+        [ForeignKey(nameof(Models.Settlement))]
         public int SettlementID { get; set; }
 
-       
 
+        public override int GetHashCode()
+        {
+            return this.BirthDate.GetHashCode() * this.PersonID.GetHashCode() + this.Name.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return this.GetHashCode().Equals(obj.GetHashCode());
+        }
 
     }
 }

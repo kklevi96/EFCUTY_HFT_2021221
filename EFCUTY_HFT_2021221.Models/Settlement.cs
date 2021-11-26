@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace EFCUTY_HFT_2021221.Models
@@ -22,6 +23,7 @@ namespace EFCUTY_HFT_2021221.Models
         public double HDI { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual Country Country { get; set; }
 
         [NotMapped]
@@ -29,5 +31,15 @@ namespace EFCUTY_HFT_2021221.Models
 
         [ForeignKey(nameof(Country))]
         public int CountryID { get; set; }
+
+        public override int GetHashCode()
+        {
+            return this.HDI.GetHashCode() * this.SettlementName.GetHashCode() + this.HDI.GetHashCode() * this.Population.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return this.GetHashCode().Equals(obj.GetHashCode());
+        }
     }
 }
