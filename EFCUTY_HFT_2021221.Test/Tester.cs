@@ -13,100 +13,499 @@ namespace WorldDb.Test
     public class Tester
     {
 
-        CountryLogic cl;
+        SettlementLogic sl;
+        CitizenLogic cl;
+        CountryLogic cyl;
 
         [SetUp]
         public void Init()
         {
-            var mockCarRepository =
+            var mockCountryRepository =
                 new Mock<ICountryRepository>();
 
-            Country fakeCountry = new Country();
-            List<Settlement> fakeSettlements = new();
-            List<Citizen> fakeCitizens = new();
+            var mockSettlementRepository =
+                new Mock<ISettlementRepository>();
 
+            var mockCitizenRepository =
+                new Mock<ICitizenRepository>();
 
-            fakeCountry.CountryID = 1;
-            fakeCountry.Name = "Hungary";
-            var countries = new List<Country>()
+            var fakeCountries = new List<Country>()
+            {
+                new Country()
                 {
-                    new Country(){
-                        HDI=0.944,
-                        Settlements=fakeSettlements,
-                        Citizens=fakeCitizens
-                        
+                    CountryID = 1,
+                    Name = "Hamisország",
+                    IsOECDMember = false,
+                    TotalGDPInMillionUSD = 6999,
+                    Settlements = new List<Settlement>()
+                {
+                    new Settlement()
+                    {
+                        SettlementID = 1,
+                        CountryID = 1,
+                        SettlementName = "Az első hamiskás település",
+                        HDI = 0.944,
+                        Population = 1000000
                     },
-                    new Country(){
-                        
+                    new Settlement()
+                    {
+                        SettlementID = 2,
+                        CountryID = 1,
+                        SettlementName = "A második hamiskás település",
+                        HDI = 0.844,
+                        Population = 700000
                     }
-                }.AsQueryable();
 
-            mockCarRepository.Setup((t) => t.GetAll())
-                .Returns(countries);
+                }
+                },
 
-            cl = new CountryLogic(
-                mockCarRepository.Object);
-        }
+                new Country
+                {
+                    CountryID = 2,
+                    Name = "Huncutország",
+                    IsOECDMember = true,
+                    TotalGDPInMillionUSD = 900000,
+                    Settlements = new List<Settlement>()
+                {
+                new Settlement()
+                {
+                    SettlementID = 3,
+                    CountryID = 2,
+                    SettlementName = "Az első huncut település",
+                    HDI = 0.934,
+                    Population = 40000
+                },
+                new Settlement()
+                {
+                    SettlementID = 4,
+                    CountryID = 2,
+                    SettlementName = "A második huncut település",
+                    HDI = 0.3,
+                    Population = 540000
+                }
 
-        [Test]
-        public void AVGPriceTest()
-        {
+                }
+                }
+            }.AsQueryable();
 
-            //ACT
-            var result = cl.HDI();
-
-            //ASSERT
-            Assert.That(result, Is.EqualTo(1500));
-        }
-
-        [Test]
-        public void AVGHDITest()
-        {
-            //ACT
-            var result = cl.HDI();
-
-            //ASSERT
-            var expected = new List
-                <KeyValuePair<string, double>>()
+            Country fakeCountry1 = new()
             {
-                new KeyValuePair<string, double>
-                ("test")
+                CountryID = 1,
+                Name = "Hamisország",
+                IsOECDMember = false,
+                TotalGDPInMillionUSD = 6999,
+                Settlements = new List<Settlement>()
+                {
+                    new Settlement()
+                    {
+                        SettlementID = 1,
+                        CountryID = 1,
+                        SettlementName = "Az első hamiskás település",
+                        HDI = 0.944,
+                        Population = 1000000
+                    },
+                    new Settlement()
+                    {
+                        SettlementID = 2,
+                        CountryID = 1,
+                        SettlementName = "A második hamiskás település",
+                        HDI = 0.844,
+                        Population = 700000
+                    }
+
+                }
             };
-            Assert.That(result, Is.EqualTo(expected));
+
+            Country fakeCountry2 = new()
+            {
+                CountryID = 2,
+                Name = "Huncutország",
+                IsOECDMember = true,
+                Settlements = new List<Settlement>()
+                {
+                new Settlement()
+                {
+                    SettlementID = 3,
+                    CountryID = 2,
+                    SettlementName = "Az első huncut település",
+                    HDI = 0.934,
+                    Population = 40000
+                },
+                new Settlement()
+                {
+                    SettlementID = 4,
+                    CountryID = 2,
+                    SettlementName = "A második huncut település",
+                    HDI = 0.3,
+                    Population = 540000
+                }
+
+                },
+                TotalGDPInMillionUSD = 900000
+            };
+
+            Settlement developedSettlement = new()
+            {
+                HDI = 0.94,
+                SettlementID = 1,
+                Population = 911220,
+                Country = fakeCountry1,
+                SettlementName="Fejlett település"
+            };
+
+            Settlement undevelopedSettlement = new()
+            {
+                HDI = 0.24,
+                SettlementID = 2,
+                Population = 222220,
+                Country = fakeCountry2,
+                SettlementName = "Fejletlen település"
+            };
+
+            var fakeSettlements = new List<Settlement>()
+            {
+                new Settlement()
+                {
+                    SettlementID = 1,
+                    Country = fakeCountry1,
+                    SettlementName = "Az első hamiskás település",
+                    HDI = 0.944,
+                    Population = 1000000
+                },
+                new Settlement()
+                {
+                    SettlementID = 2,
+                    Country = fakeCountry1,
+                    SettlementName = "A második hamiskás település",
+                    HDI = 0.844,
+                    Population = 700000
+                },
+                new Settlement()
+                {
+                    SettlementID = 3,
+                    Country = fakeCountry2,
+                    SettlementName = "Az első huncut település",
+                    HDI = 0.934,
+                    Population = 40000
+                },
+                new Settlement()
+                {
+                    SettlementID = 4,
+                    Country = fakeCountry2,
+                    SettlementName = "A második huncut település",
+                    HDI = 0.3,
+                    Population = 540000
+                }
+            }.AsQueryable();
+
+            var fakeCitizens = new List<Citizen>()
+            {
+                new Citizen()
+                {
+                    PersonID = 1,
+                    Name = "Első Előd",
+                    BirthDate = new DateTime(1984, 10, 12),
+                    Citizenship = fakeCountry1,
+                    Settlement = undevelopedSettlement,
+                    HasCriminalRecord = false,
+                    IncomeInUSD = 50000
+                },
+                new Citizen()
+                {
+                    PersonID = 2,
+                    Name = "Második Márton",
+                    BirthDate = new DateTime(1954, 10, 12),
+                    Citizenship = fakeCountry1,
+                    Settlement = undevelopedSettlement,
+                    HasCriminalRecord = false,
+                    IncomeInUSD = 50000
+                },
+                new Citizen()
+                {
+                    PersonID = 3,
+                    Name = "Harmadik Huba",
+                    BirthDate = new DateTime(1984, 10, 12),
+                    Citizenship = fakeCountry1,
+                    Settlement = undevelopedSettlement,
+                    HasCriminalRecord = true,
+                    IncomeInUSD = 50000
+                },
+                new Citizen()
+                {
+                    PersonID = 4,
+                    Name = "Negyedik Nóra",
+                    BirthDate = new DateTime(1914, 10, 12),
+                    Citizenship = fakeCountry2,
+                    Settlement = developedSettlement,
+                    HasCriminalRecord = true,
+                    IncomeInUSD = 41000
+                },
+                new Citizen()
+                {
+                    PersonID = 5,
+                    Name = "Ötödik Ödön",
+                    BirthDate = new DateTime(1984, 03, 12),
+                    Citizenship = fakeCountry1,
+                    Settlement = undevelopedSettlement,
+                    HasCriminalRecord = false,
+                    IncomeInUSD = 30700
+                },
+                new Citizen()
+                {
+                    PersonID = 6,
+                    Name = "Hatodik Heléna",
+                    BirthDate = new DateTime(1941, 11, 20),
+                    Citizenship = fakeCountry1,
+                    Settlement = undevelopedSettlement,
+                    HasCriminalRecord = false,
+                    IncomeInUSD = 51000
+                },
+                new Citizen()
+                {
+                    PersonID = 7,
+                    Name = "Hetedik Hedvig",
+                    BirthDate = new DateTime(1941, 11, 20),
+                    Citizenship = fakeCountry1,
+                    Settlement = undevelopedSettlement,
+                    HasCriminalRecord = false,
+                    IncomeInUSD = 50000
+                }
+
+            }.AsQueryable();
+
+            mockSettlementRepository.Setup((t) => t.ReadAll())
+                .Returns(fakeSettlements);
+
+            mockCitizenRepository.Setup((t) => t.ReadAll())
+                .Returns(fakeCitizens);
+
+            mockCountryRepository.Setup((t) => t.ReadAll())
+                .Returns(fakeCountries);
+
+            sl = new SettlementLogic(mockSettlementRepository.Object);
+            cl = new CitizenLogic(mockCitizenRepository.Object);
+            cyl = new CountryLogic(mockCountryRepository.Object);
+
         }
 
         [Test]
-        public void AVGHDITest()
+        public void PoorOldPeopleTest()
         {
-            //ACT
-            var result = cl.HDI();
-
-            //ASSERT
-            var expected = new List
-                <KeyValuePair<string, double>>()
+            var result = cl.PoorOldPeople().ToList();
+            var expected = new List<Citizen>()
             {
-                new KeyValuePair<string, double>
-                ("test")
+                new Citizen()
+                {
+                    PersonID = 6,
+                    Name = "Hatodik Heléna",
+                    BirthDate = new DateTime(1941, 11, 20),
+                    CitizenshipID = 1,
+                    SettlementID = 1,
+                    HasCriminalRecord = false,
+                    IncomeInUSD = 51000
+                },
+                new Citizen()
+                {
+                    PersonID = 7,
+                    Name = "Hetedik Hedvig",
+                    BirthDate = new DateTime(1941, 11, 20),
+                    CitizenshipID = 1,
+                    SettlementID = 3,
+                    HasCriminalRecord = false,
+                    IncomeInUSD = 50000
+                }
             };
-            Assert.That(result, Is.EqualTo(expected));
-        }
 
+
+            Assert.That(expected, Is.EqualTo(result));
+        }
 
         [Test]
-        public void AVGHDITest()
+        public void PopulationOECDTest()
         {
-            //ACT
-            var result = cl.HDI();
-
-            //ASSERT
-            var expected = new List
-                <KeyValuePair<string, double>>()
+            var expected = new List<KeyValuePair<string, int>>()
             {
-                new KeyValuePair<string, double>
-                ("test")
+                new KeyValuePair<string, int>("Huncutország",580000)
             };
-            Assert.That(result, Is.EqualTo(expected));
+            var result = cyl.PopulationOECD();
+
+            Assert.That(expected, Is.EqualTo(result));
+
         }
 
+        [Test]
+        public void CriminalTest()
+        {
+            var result = cl.DevelopedCriminals().ToList();
+
+            var expected = new List<Citizen>()
+            {
+                new Citizen()
+                {
+                    PersonID = 4,
+                    Name = "Negyedik Nóra",
+                    BirthDate = new DateTime(1914, 10, 12),
+                    CitizenshipID = 2,
+                    SettlementID = 3,
+                    HasCriminalRecord = true,
+                    IncomeInUSD = 41000
+                }
+            };
+
+
+            Assert.That(expected, Is.EqualTo(result));
+        }
+
+        [Test]
+        public void CreateTooPoorCountryTest()
+        {
+            Country newcountry = new()
+            {
+                CountryID = 1,
+                IsOECDMember = true,
+                Name = "túl szegény új ország",
+                TotalGDPInMillionUSD = 10
+            };
+
+            try
+            {
+                cyl.Create(newcountry);
+                Assert.Fail();
+            }
+            catch (ArgumentException ex)
+            {
+                Assert.Pass(ex.Message);
+            }
+        }
+
+        [Test]
+        public void CreateNormalCountryTest()
+        {
+            Country newcountry = new()
+            {
+                CountryID = 1,
+                IsOECDMember = false,
+                Name = "egy átlagos új ország",
+                TotalGDPInMillionUSD = 10000
+            };
+
+            try
+            {
+                cyl.Create(newcountry);
+                Assert.Pass();
+            }
+            catch (ArgumentException ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [Test]
+        public void OldCitizenCreateTest()
+        {
+            Citizen deadcitizen = new()
+            {
+                BirthDate = new DateTime(1828, 01, 01),
+                Name = "Halott Ember",
+                PersonID = 1
+            };
+
+            try
+            {
+                cl.Create(deadcitizen);
+                Assert.Fail();
+            }
+            catch (ArgumentException ex)
+            {
+                Assert.Pass(ex.Message);
+            }
+        }
+
+        [Test]
+        public void TypicalCitizenCreateTest()
+        {
+            Citizen typicalcitizen = new()
+            {
+                BirthDate = new DateTime(1928, 01, 01),
+                Name = "Élő Ember",
+                PersonID = 1
+            };
+
+            try
+            {
+                cl.Create(typicalcitizen);
+                Assert.Pass();
+            }
+            catch (ArgumentException ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [Test]
+        public void TooDevelopedSettlementCreateTest()
+        {
+            Settlement supersettlement = new()
+            {
+                SettlementID = 1,
+                HDI = 1.01,
+                SettlementName = "A szuperváros",
+                Population = 1293
+            };
+
+            try
+            {
+                sl.Create(supersettlement);
+                Assert.Fail();
+            }
+            catch (ArgumentException ex)
+            {
+                Assert.Pass(ex.Message);
+            }
+        }
+
+        [Test]
+        public void UnpopulatedSettlementCreateTest()
+        {
+            Settlement emptysettlement = new()
+            {
+                SettlementID = 1,
+                HDI = 0.81,
+                SettlementName = "A kihalt település",
+                Population = 0
+            };
+
+            try
+            {
+                sl.Create(emptysettlement);
+                Assert.Fail();
+            }
+            catch (ArgumentException ex)
+            {
+                Assert.Pass(ex.Message);
+            }
+        }
+
+        [Test]
+        public void TypicalSettlementCreateTest()
+        {
+            Settlement emptysettlement = new()
+            {
+                SettlementID = 1,
+                HDI = 0.81,
+                SettlementName = "Település",
+                Population = 124123
+            };
+
+            try
+            {
+                sl.Create(emptysettlement);
+                Assert.Pass();
+            }
+            catch (ArgumentException ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
     }
 }
