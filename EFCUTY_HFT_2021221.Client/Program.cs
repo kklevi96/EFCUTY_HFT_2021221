@@ -9,11 +9,15 @@ namespace EFCUTY_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            System.Threading.Thread.Sleep(40000);
+            System.Threading.Thread.Sleep(8000);
 
             RestService rest = new("http://localhost:5000");
 
             var countries = rest.Get<Country>("country");
+            var settlements = rest.Get<Settlement>("settlement");
+            var citizens = rest.Get<Citizen>("citizen");
+            Console.WriteLine("hello world");
+            ;
             Console.ReadKey();
         }
     }
