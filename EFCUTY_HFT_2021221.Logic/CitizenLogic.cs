@@ -22,6 +22,8 @@ namespace EFCUTY_HFT_2021221.Logic
             DateTime earliest = new(1900, 01, 01);
             if (citizen.BirthDate < earliest)
                 throw new ArgumentException("BirthDate is too early! That citizen is surely dead now.");
+            if (citizen.Name=="")
+                throw new ArgumentException("The person must have a name!");
             citizenRepository.Create(citizen);
         }
 
@@ -30,9 +32,11 @@ namespace EFCUTY_HFT_2021221.Logic
             return citizenRepository.Read(id);
         }
 
-        public void Update(Citizen settlement)
+        public void Update(Citizen citizen)
         {
-            citizenRepository.Update(settlement);
+            if (citizen.Name == "")
+                throw new ArgumentException("The person must have a name!");
+            citizenRepository.Update(citizen);
         }
 
         public void Delete(int id)
@@ -53,11 +57,11 @@ namespace EFCUTY_HFT_2021221.Logic
                    select x;
         }
 
-        //noncrud 4: who are the people who are older than 80 years and live in a country which is not an OECD member?
+        //noncrud 4: who are the people who were born before 1940.01.01 and live in a country which is not an OECD member?
         public IEnumerable<Citizen> PoorOldPeople()
         {
             return from x in citizenRepository.ReadAll()
-                   where (DateTime.Now - x.BirthDate).TotalDays > 29220 && !x.Citizenship.IsOECDMember
+                   where x.BirthDate<new DateTime(1940,01,01) && !x.Citizenship.IsOECDMember
                    select x;
         }
     }
