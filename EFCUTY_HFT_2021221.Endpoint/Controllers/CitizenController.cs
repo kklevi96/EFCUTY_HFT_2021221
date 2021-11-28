@@ -40,7 +40,7 @@ namespace EFCUTY_HFT_2021221.Endpoint.Controllers
         [HttpPost]
         public void Post([FromBody] Citizen value)
         {
-            ctl.Create(value);
+                ctl.Create(value);       
         }
 
         // PUT /citizen
