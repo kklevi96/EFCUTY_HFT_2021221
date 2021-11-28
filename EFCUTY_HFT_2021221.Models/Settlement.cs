@@ -42,7 +42,7 @@ namespace EFCUTY_HFT_2021221.Models
 
         public override string ToString()
         {
-            return "---- DETAILS ----\n\tName: " + SettlementName + ", " + Country.Name + "\n\tID:" + SettlementID + "\n\tPopulation: " + Population + "\n\tHDI: " + HDI + "\n---- DETAILS ----";
+            return "---- DETAILS ----\n\tName, Country: " + SettlementName + ", " + Country.Name + "\n\tID:" + SettlementID + "\n\tPopulation: " + Population + "\n\tHDI: " + HDI + "\n---- DETAILS ----";
         }
     }
 }
