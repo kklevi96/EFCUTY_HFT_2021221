@@ -12,24 +12,18 @@ namespace EFCUTY_HFT_2021221.Client
 
         static void Main(string[] args)
         {
-            System.Threading.Thread.Sleep(18000);
+            Console.CursorVisible = false;
+            int wait = 15;
+            for (int i = 0; i < wait; i++)
+            {
+                Console.WriteLine("{0}", wait - i);
+                System.Threading.Thread.Sleep(750);
+                Console.Clear();
+            }
 
-            List<Citizen> developedCriminals = rest.Get<Citizen>("citizenstat/developedcriminals").ToList();
-            List<Citizen> poorOldPeople = rest.Get<Citizen>("citizenstat/pooroldpeople").ToList();
-            List<KeyValuePair<string, int>> population = rest.Get<KeyValuePair<string, int>>("countrystat/population").ToList();
-            List<KeyValuePair<string, int>> poorCountries = rest.Get<KeyValuePair<string, int>>("countrystat/poorcountries").ToList();
-            List<KeyValuePair<string, double>> avgHDIByCountries = rest.Get<KeyValuePair<string, double>>("settlementstat/avghdibycountries").ToList();
-            List<Settlement> goodSettlements = rest.Get<Settlement>("settlementstat/goodsettlements").ToList();
-            ;
-
-            //var goodsettlements = rest.Get<Settlement>("settlementstat/goodsettlements");
-            //  NONCRUD METHODS
-            //        IEnumerable<Citizen> DevelopedCriminals();
-            //        IEnumerable<Citizen> PoorOldPeople();
-            //        IEnumerable<KeyValuePair<string, int>> PopulationOECD();
-            //        IEnumerable<Country> PoorCountries();
-            //        IEnumerable<KeyValuePair<string, double>> AvgHDIByCountries();
-            //        IEnumerable<Settlement> GoodSettlements();
+            Console.CursorVisible = true;
+            Console.WriteLine("Program loaded, showing menu...");
+            System.Threading.Thread.Sleep(200);
 
             ConsoleMenu submenuCitizens = new ConsoleMenu(args, level: 1)
                 .Add("Create a citizen", () =>
@@ -151,24 +145,13 @@ namespace EFCUTY_HFT_2021221.Client
                 })
                 .Add("Return to main menu", ConsoleMenu.Close);
 
-
-
-
-
             ConsoleMenu menu = new ConsoleMenu(args, level: 0)
                 .Add("Methods for Citizens", submenuCitizens.Show)
                 .Add("Methods for Settlements", submenuSettlements.Show)
                 .Add("Methods for Countries", submenuCountries.Show)
                 .Add("Noncrud queries", submenuNoncrud.Show)
                 .Add("Exit", () => Environment.Exit(0));
-
-
-
             menu.Show();
-
-            //Console.WriteLine("hello world");
-            ;
-            Console.ReadKey();
         }
 
         public static string ReadAllSettlements()
@@ -204,7 +187,7 @@ namespace EFCUTY_HFT_2021221.Client
             string criminalRecord = Console.ReadLine();
             if (criminalRecord != "yes" && criminalRecord != "no")
             {
-                throw new ArgumentException("Your were told to write yes or no");
+                throw new ArgumentException("Only yes or no answers are allowed");
             }
             Console.Write("Country ID of citizen: ");
             int countryID = int.Parse(Console.ReadLine());
@@ -252,7 +235,7 @@ namespace EFCUTY_HFT_2021221.Client
             string OECDMember = Console.ReadLine();
             if (OECDMember != "yes" && OECDMember != "no")
             {
-                throw new ArgumentException("Your were told to write yes or no");
+                throw new ArgumentException("Only yes or no answers are allowed");
             }
 
             Country country = new()
@@ -298,7 +281,7 @@ namespace EFCUTY_HFT_2021221.Client
             string criminalRecord = Console.ReadLine();
             if (criminalRecord != "yes" && criminalRecord != "no")
             {
-                throw new ArgumentException("Your were told to write yes or no");
+                throw new ArgumentException("Only yes or no answers are allowed");
             }
             Console.Write("New country ID of citizen: ");
             int countryID = int.Parse(Console.ReadLine());
@@ -350,7 +333,7 @@ namespace EFCUTY_HFT_2021221.Client
             string OECDMember = Console.ReadLine();
             if (OECDMember != "yes" && OECDMember != "no")
             {
-                throw new ArgumentException("Your were told to write yes or no");
+                throw new ArgumentException("Only yes or no answers are allowed");
             }
 
             Country country = new()
