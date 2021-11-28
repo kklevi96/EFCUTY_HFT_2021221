@@ -24,7 +24,7 @@ namespace EFCUTY_HFT_2021221.Repository
 
         public Citizen Read(int id)
         {
-            return db.Citizens.FirstOrDefault(t => t.PersonID == id);
+            return db.Citizens.FirstOrDefault(t => t.CitizenshipID == id);
         }
 
         public void Update(Citizen citizen)
@@ -39,7 +39,7 @@ namespace EFCUTY_HFT_2021221.Repository
 
         public void Delete(int id)
         {
-            db.Citizens.Remove(Read(id));
+            db.Remove(Read(id));
             db.SaveChanges();
         }
 

@@ -17,14 +17,7 @@ namespace EFCUTY_HFT_2021221.Data
 
         public WorldDbContext()
         {
-            try
-            {
-                this.Database.EnsureCreated();
-            }
-            catch(Microsoft.Data.SqlClient.SqlException ex)
-            {
-                Console.WriteLine("Fura exception, restartold a progit, általában jó. {0}", ex.Message);
-            }
+            this.Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
@@ -74,28 +67,70 @@ namespace EFCUTY_HFT_2021221.Data
                 TotalGDPInMillionUSD = 155000
             };
 
-            Country Slovakia = new() //5.459M
-            {
-                CountryID = 2,
-                Name = "Slovakia",
-                IsOECDMember = true,
-                TotalGDPInMillionUSD = 104600
-            };
-            Country Cameroon = new() //26.55M
-            {
-                CountryID = 3,
-                Name = "Cameroon",
-                IsOECDMember = false,
-                TotalGDPInMillionUSD = 39800
-            };
-            Country NewZealand = new() //5.084M
-            {
-                CountryID = 4,
-                Name = "New Zealand",
-                IsOECDMember = true,
-                TotalGDPInMillionUSD = 212500
-            };
-
+            //Country Slovakia = new() //5.459M
+            //{
+            //    CountryID = 2,
+            //    Name = "Slovakia",
+            //    IsOECDMember = true,
+            //    TotalGDPInMillionUSD = 104600
+            //};
+            //Country Cameroon = new() //26.55M
+            //{
+            //    CountryID = 3,
+            //    Name = "Cameroon",
+            //    IsOECDMember = false,
+            //    TotalGDPInMillionUSD = 39800
+            //};
+            //Country NewZealand = new() //5.084M
+            //{
+            //    CountryID = 4,
+            //    Name = "New Zealand",
+            //    IsOECDMember = true,
+            //    TotalGDPInMillionUSD = 212500
+            //};
+            //Country Nauru = new() //10384
+            //{
+            //    CountryID = 5,
+            //    Name = "Nauru",
+            //    IsOECDMember = false,
+            //    TotalGDPInMillionUSD = 118
+            //};
+            //Country Spain = new() //47,35M
+            //{
+            //    CountryID = 6,
+            //    Name = "Spain",
+            //    IsOECDMember = true,
+            //    TotalGDPInMillionUSD = 1281000
+            //};
+            //Country USA = new() //329,5M
+            //{
+            //    CountryID = 7,
+            //    Name = "United States of America",
+            //    IsOECDMember = true,
+            //    TotalGDPInMillionUSD = 20940000
+            //};
+            //Country Bulgaria = new() //6.927M
+            //{
+            //    CountryID = 8,
+            //    Name = "Bulgaria",
+            //    IsOECDMember = false,
+            //    TotalGDPInMillionUSD = 69110
+            //};
+            //Country Slovenia = new() //2100000
+            //{
+            //    CountryID = 9,
+            //    Name = "Slovenia",
+            //    IsOECDMember = true,
+            //    TotalGDPInMillionUSD = 52880
+            //};
+            //Country Russia = new() //144100000
+            //{
+            //    CountryID = 10,
+            //    Name = "Russia",
+            //    IsOECDMember = false,
+            //    TotalGDPInMillionUSD = 1483000
+            //};
+            
 
             Settlement Budapest = new()
             {
@@ -133,97 +168,34 @@ namespace EFCUTY_HFT_2021221.Data
                 Population = 7567000
             };
 
-            Settlement Bratislava = new()
-            {
-                SettlementID = 5,
-                SettlementName = "Bratislava",
-                CountryID = Slovakia.CountryID,
-                HDI = 0.935,
-                Population = 424428
-            };
+            //Settlement Bratislava = new()
+            //{
+            //    SettlementID = 5,
+            //    SettlementName = "Bratislava",
+            //    CountryID = Slovakia.CountryID,
+            //    HDI = 0.945,
+            //    Population = 424428
+            //};
 
-            Settlement Kosice = new()
-            {
-                SettlementID = 6,
-                SettlementName = "Košice",
-                CountryID = Slovakia.CountryID,
-                HDI = 0.873,
-                Population = 239171
-            };
+            //Settlement Kosice = new()
+            //{
+            //    SettlementID = 6,
+            //    SettlementName = "Košice",
+            //    CountryID = Slovakia.CountryID,
+            //    HDI = 0.873,
+            //    Population = 239171
+            //};
 
-            Settlement OtherSlovakSettlements = new()
-            {
-                SettlementID = 7,
-                SettlementName = "Other Slovak Settlements",
-                CountryID = Slovakia.CountryID,
-                HDI = 0.912,
-                Population = 4800000
-            };
+            //Settlement OtherSlovakSettlements = new()
+            //{
+            //    SettlementID = 7,
+            //    SettlementName = "Other Slovak Settlements",
+            //    CountryID = Slovakia.CountryID,
+            //    HDI = 0.912,
+            //    Population = 4800000
+            //};
 
-            Settlement Yaounde = new()
-            {
-                SettlementID = 8,
-                SettlementName = "Yaoundé",
-                CountryID = Cameroon.CountryID,
-                HDI = 0.703,
-                Population = 2766000
-            };
-
-            Settlement Bamenda = new()
-            {
-                SettlementID = 9,
-                SettlementName = "Bamenda",
-                CountryID = Cameroon.CountryID,
-                HDI = 0.594,
-                Population = 348766
-            };
-
-            Settlement OtherCameroonianSettlements = new()
-            {
-                SettlementID = 10,
-                SettlementName = "Other Cameroonian Settlements",
-                CountryID = Cameroon.CountryID,
-                HDI = 0.545,
-                Population = 22900000
-            };
-
-            Settlement Wellington = new()
-            {
-                SettlementID = 11,
-                SettlementName = "Wellington",
-                CountryID = NewZealand.CountryID,
-                HDI = 0.965,
-                Population = 215900
-            };
-
-            Settlement Auckland = new()
-            {
-                SettlementID = 12,
-                SettlementName = "Auckland",
-                CountryID = NewZealand.CountryID,
-                HDI = 0.971,
-                Population = 1463000
-            };
-
-            Settlement Christchurch = new()
-            {
-                SettlementID = 13,
-                SettlementName = "Christchurch",
-                CountryID = NewZealand.CountryID,
-                HDI = 0.934,
-                Population = 380600
-            };
-
-            Settlement OtherNewZealandSettlements = new()
-            {
-                SettlementID = 14,
-                SettlementName = "Other Settlements in New Zealand",
-                CountryID = NewZealand.CountryID,
-                HDI = 0.931,
-                Population = 3024500
-            };
-
-            Citizen A01 = new()
+            Citizen myself = new()
             {
                 PersonID = 1,
                 BirthDate = new DateTime(1996, 05, 22),
@@ -234,321 +206,13 @@ namespace EFCUTY_HFT_2021221.Data
                 Name = "Levente Kiss"
             };
 
-            Citizen A02 = new()
-            {
-                PersonID = 2,
-                BirthDate = new DateTime(1976, 01, 22),
-                CitizenshipID = Hungary.CountryID,
-                SettlementID = Budapest.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 3400,
-                Name = "Béla Kovács"
-            };
+            //builder.Entity<Country>().HasData(Hungary, Slovakia, Cameroon, NewZealand, Nauru);
+            builder.Entity<Country>().HasData(Hungary);
 
-            Citizen A03 = new()
-            {
-                PersonID = 3,
-                BirthDate = new DateTime(1946, 05, 20),
-                CitizenshipID = Hungary.CountryID,
-                SettlementID = Debrecen.SettlementID,
-                HasCriminalRecord = true,
-                IncomeInUSD = 1300,
-                Name = "Rajmund Nagy"
-            };
+            //builder.Entity<Settlement>().HasData(Budapest, Debrecen, Miskolc, OtherHungarianSettlements, Bratislava, Kosice, OtherSlovakSettlements);
+            builder.Entity<Settlement>().HasData(Budapest, Debrecen, Miskolc, OtherHungarianSettlements);
 
-            Citizen A04 = new()
-            {
-                PersonID = 4,
-                BirthDate = new DateTime(1946, 02, 22),
-                CitizenshipID = Hungary.CountryID,
-                SettlementID = Debrecen.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Lajos Takács"
-            };
-
-            Citizen A05 = new()
-            {
-                PersonID = 5,
-                BirthDate = new DateTime(1916, 05, 22),
-                CitizenshipID = Hungary.CountryID,
-                SettlementID = Miskolc.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "János Nagy"
-            };
-
-            Citizen A06 = new()
-            {
-                PersonID = 6,
-                BirthDate = new DateTime(1972, 02, 03),
-                CitizenshipID = Slovakia.CountryID,
-                SettlementID = Miskolc.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Eva Magyarova"
-            };
-
-            Citizen A07 = new()
-            {
-                PersonID = 7,
-                BirthDate = new DateTime(1936, 05, 22),
-                CitizenshipID = Hungary.CountryID,
-                SettlementID = OtherHungarianSettlements.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Éva Papp"
-            };
-
-            Citizen A08 = new()
-            {
-                PersonID = 8,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = Hungary.CountryID,
-                SettlementID = OtherHungarianSettlements.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A09 = new()
-            {
-                PersonID = 9,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = Slovakia.CountryID,
-                SettlementID = Bratislava.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A10 = new()
-            {
-                PersonID = 10,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = Slovakia.CountryID,
-                SettlementID = Bratislava.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A11 = new()
-            {
-                PersonID = 11,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = Slovakia.CountryID,
-                SettlementID = Kosice.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A12 = new()
-            {
-                PersonID = 12,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = Hungary.CountryID,
-                SettlementID = Kosice.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A13 = new()
-            {
-                PersonID = 13,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = Slovakia.CountryID,
-                SettlementID = OtherSlovakSettlements.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A14 = new()
-            {
-                PersonID = 14,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = Slovakia.CountryID,
-                SettlementID = OtherSlovakSettlements.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A15 = new()
-            {
-                PersonID = 15,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = Cameroon.CountryID,
-                SettlementID = Yaounde.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A16 = new()
-            {
-                PersonID = 16,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = Cameroon.CountryID,
-                SettlementID = Yaounde.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A17 = new()
-            {
-                PersonID = 17,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = Cameroon.CountryID,
-                SettlementID = Bamenda.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A18 = new()
-            {
-                PersonID = 18,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = Cameroon.CountryID,
-                SettlementID = Bamenda.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A19 = new()
-            {
-                PersonID = 19,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = Cameroon.CountryID,
-                SettlementID = OtherCameroonianSettlements.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A20 = new()
-            {
-                PersonID = 20,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = Cameroon.CountryID,
-                SettlementID = OtherCameroonianSettlements.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A21 = new()
-            {
-                PersonID = 21,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = NewZealand.CountryID,
-                SettlementID = Wellington.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A22 = new()
-            {
-                PersonID = 22,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = NewZealand.CountryID,
-                SettlementID = Wellington.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A23 = new()
-            {
-                PersonID = 23,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = NewZealand.CountryID,
-                SettlementID = Auckland.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A24 = new()
-            {
-                PersonID = 24,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = NewZealand.CountryID,
-                SettlementID = Auckland.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A25 = new()
-            {
-                PersonID = 25,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = NewZealand.CountryID,
-                SettlementID = Auckland.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A26 = new()
-            {
-                PersonID = 26,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = NewZealand.CountryID,
-                SettlementID = Christchurch.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A27 = new()
-            {
-                PersonID = 27,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = Hungary.CountryID,
-                SettlementID = Christchurch.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A28 = new()
-            {
-                PersonID = 28,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = NewZealand.CountryID,
-                SettlementID = OtherNewZealandSettlements.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-            Citizen A29 = new()
-            {
-                PersonID = 29,
-                BirthDate = new DateTime(1996, 05, 22),
-                CitizenshipID = NewZealand.CountryID,
-                SettlementID = OtherNewZealandSettlements.SettlementID,
-                HasCriminalRecord = false,
-                IncomeInUSD = 2000,
-                Name = "Levente Kiss"
-            };
-
-
-            builder.Entity<Country>().HasData(Hungary, Slovakia, Cameroon, NewZealand);
-
-            builder.Entity<Settlement>().HasData(Budapest, Debrecen, Miskolc, OtherHungarianSettlements, Bratislava, Kosice, OtherSlovakSettlements, Yaounde,
-                Bamenda, OtherCameroonianSettlements, Wellington, Auckland, Christchurch, OtherNewZealandSettlements);
-
-            builder.Entity<Citizen>().HasData(A01, A02, A03, A04, A05, A06, A07, A08, A09, A10, A11, A12, A13, A14, A15, A16, A17, A18, A19, A20, A21, A22, A23, A24, A25, A26, A27, A28, A29);
+            builder.Entity<Citizen>().HasData(myself);
 
         }
     }

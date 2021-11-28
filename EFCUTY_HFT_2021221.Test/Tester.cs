@@ -82,14 +82,6 @@ namespace WorldDb.Test
                     SettlementName = "A második huncut település",
                     HDI = 0.3,
                     Population = 540000
-                },
-                new Settlement()
-                {
-                    HDI = 0.84,
-                    SettlementID = 5,
-                    Population = 221230,
-                    CountryID = 2,
-                    SettlementName = "Ártatlan település"
                 }
 
                 }
@@ -129,7 +121,6 @@ namespace WorldDb.Test
                 CountryID = 2,
                 Name = "Huncutország",
                 IsOECDMember = true,
-                TotalGDPInMillionUSD = 900000,
                 Settlements = new List<Settlement>()
                 {
                 new Settlement()
@@ -147,17 +138,10 @@ namespace WorldDb.Test
                     SettlementName = "A második huncut település",
                     HDI = 0.3,
                     Population = 540000
-                },
-                new Settlement()
-                {
-                    HDI = 0.84,
-                    SettlementID = 5,
-                    Population = 221230,
-                    CountryID = 2,
-                    SettlementName = "Ártatlan település"
                 }
 
-                }
+                },
+                TotalGDPInMillionUSD = 900000
             };
 
             Settlement developedSettlement = new()
@@ -166,7 +150,7 @@ namespace WorldDb.Test
                 SettlementID = 1,
                 Population = 911220,
                 Country = fakeCountry1,
-                SettlementName = "Fejlett település"
+                SettlementName="Fejlett település"
             };
 
             Settlement undevelopedSettlement = new()
@@ -177,25 +161,6 @@ namespace WorldDb.Test
                 Country = fakeCountry2,
                 SettlementName = "Fejletlen település"
             };
-            Settlement innocentSettlement = new()
-            {
-                HDI = 0.84,
-                SettlementID = 3,
-                Population = 221230,
-                SettlementName = "Ártatlan település",
-                Citizens = new List<Citizen>()
-                {
-                    new Citizen()
-                    {
-                        PersonID = 8,
-                        Name = "Nyolcadik Nyafika",
-                        BirthDate = new DateTime(1955,05,05),
-                        HasCriminalRecord = false,
-                        IncomeInUSD = 23423
-                    }
-                }
-                
-            };
 
             var fakeSettlements = new List<Settlement>()
             {
@@ -203,111 +168,33 @@ namespace WorldDb.Test
                 {
                     SettlementID = 1,
                     Country = fakeCountry1,
-                    SettlementName = "Az első fejlett település",
+                    SettlementName = "Az első hamiskás település",
                     HDI = 0.944,
-                    Population = 1000000,
-                    Citizens = new List<Citizen>()
-                    {
-                        new Citizen()
-                        {
-                            PersonID = 4,
-                            Name = "Negyedik Nóra",
-                            BirthDate = new DateTime(1914, 10, 12),
-                            Citizenship = fakeCountry2,
-                            Settlement = developedSettlement,
-                            HasCriminalRecord = true,
-                            IncomeInUSD = 41000
-                        }
-                    }
+                    Population = 1000000
                 },
                 new Settlement()
                 {
                     SettlementID = 2,
-                    Country = fakeCountry2,
-                    SettlementName = "A második fejletlen település",
-                    HDI = 0.3,
-                    Population = 540000,
-                    Citizens = new List<Citizen>()
-                    {
-                        new Citizen()
-                        {
-                            PersonID = 1,
-                            Name = "Első Előd",
-                            BirthDate = new DateTime(1984, 10, 12),
-                            Citizenship = fakeCountry1,
-                            Settlement = undevelopedSettlement,
-                            HasCriminalRecord = false,
-                            IncomeInUSD = 50000
-                        },
-                        new Citizen()
-                        {
-                            PersonID = 2,
-                            Name = "Második Márton",
-                            BirthDate = new DateTime(1954, 10, 12),
-                            Citizenship = fakeCountry1,
-                            Settlement = undevelopedSettlement,
-                            HasCriminalRecord = false,
-                            IncomeInUSD = 50000
-                        },
-                        new Citizen()
-                        {
-                            PersonID = 3,
-                            Name = "Harmadik Huba",
-                            BirthDate = new DateTime(1984, 10, 12),
-                            Citizenship = fakeCountry1,
-                            Settlement = undevelopedSettlement,
-                            HasCriminalRecord = true,
-                            IncomeInUSD = 50000
-                        },
-                        new Citizen()
-                        {
-                            PersonID = 1,
-                            Name = "Első Előd",
-                            BirthDate = new DateTime(1984, 10, 12),
-                            Citizenship = fakeCountry1,
-                            Settlement = undevelopedSettlement,
-                            HasCriminalRecord = false,
-                            IncomeInUSD = 50000
-                        },
-                        new Citizen()
-                        {
-                            PersonID = 2,
-                            Name = "Második Márton",
-                            BirthDate = new DateTime(1954, 10, 12),
-                            Citizenship = fakeCountry1,
-                            Settlement = undevelopedSettlement,
-                            HasCriminalRecord = false,
-                            IncomeInUSD = 50000
-                        },
-                        new Citizen()
-                        {
-                            PersonID = 3,
-                            Name = "Harmadik Huba",
-                            BirthDate = new DateTime(1984, 10, 12),
-                            Citizenship = fakeCountry1,
-                            Settlement = undevelopedSettlement,
-                            HasCriminalRecord = true,
-                            IncomeInUSD = 50000
-                        }
-                    }
+                    Country = fakeCountry1,
+                    SettlementName = "A második hamiskás település",
+                    HDI = 0.844,
+                    Population = 700000
                 },
                 new Settlement()
                 {
-                    HDI = 0.84,
                     SettlementID = 3,
-                    Population = 221230,
-                    SettlementName = "Ártatlan település",
-                    Citizens = new List<Citizen>()
-                    {
-                        new Citizen()
-                        {
-                            PersonID = 8,
-                            Name = "Nyolcadik Nyafika",
-                            BirthDate = new DateTime(1955,05,05),
-                            HasCriminalRecord = false,
-                            IncomeInUSD = 23423
-                        }
-                    }
+                    Country = fakeCountry2,
+                    SettlementName = "Az első huncut település",
+                    HDI = 0.934,
+                    Population = 40000
+                },
+                new Settlement()
+                {
+                    SettlementID = 4,
+                    Country = fakeCountry2,
+                    SettlementName = "A második huncut település",
+                    HDI = 0.3,
+                    Population = 540000
                 }
             }.AsQueryable();
 
@@ -367,7 +254,7 @@ namespace WorldDb.Test
                 {
                     PersonID = 6,
                     Name = "Hatodik Heléna",
-                    BirthDate = new DateTime(1938, 11, 20),
+                    BirthDate = new DateTime(1941, 11, 20),
                     Citizenship = fakeCountry1,
                     Settlement = undevelopedSettlement,
                     HasCriminalRecord = false,
@@ -377,21 +264,11 @@ namespace WorldDb.Test
                 {
                     PersonID = 7,
                     Name = "Hetedik Hedvig",
-                    BirthDate = new DateTime(1935, 11, 20),
+                    BirthDate = new DateTime(1941, 11, 20),
                     Citizenship = fakeCountry1,
                     Settlement = undevelopedSettlement,
                     HasCriminalRecord = false,
                     IncomeInUSD = 50000
-                },
-                new Citizen()
-                {
-                    PersonID = 8,
-                    Name = "Nyolcadik Nyafika",
-                    BirthDate = new DateTime(1955,05,05),
-                    Citizenship = fakeCountry1,
-                    Settlement = innocentSettlement,
-                    HasCriminalRecord = false,
-                    IncomeInUSD = 23423
                 }
 
             }.AsQueryable();
@@ -421,7 +298,7 @@ namespace WorldDb.Test
                 {
                     PersonID = 6,
                     Name = "Hatodik Heléna",
-                    BirthDate = new DateTime(1938, 11, 20),
+                    BirthDate = new DateTime(1941, 11, 20),
                     CitizenshipID = 1,
                     SettlementID = 1,
                     HasCriminalRecord = false,
@@ -431,7 +308,7 @@ namespace WorldDb.Test
                 {
                     PersonID = 7,
                     Name = "Hetedik Hedvig",
-                    BirthDate = new DateTime(1935, 11, 20),
+                    BirthDate = new DateTime(1941, 11, 20),
                     CitizenshipID = 1,
                     SettlementID = 3,
                     HasCriminalRecord = false,
@@ -444,14 +321,13 @@ namespace WorldDb.Test
         }
 
         [Test]
-        public void PopulationTest()
+        public void PopulationOECDTest()
         {
             var expected = new List<KeyValuePair<string, int>>()
             {
-                new KeyValuePair<string, int>("Hamisország", 1700000),
-                new KeyValuePair<string, int>("Huncutország",801230)
+                new KeyValuePair<string, int>("Huncutország",580000)
             };
-            var result = cyl.Population();
+            var result = cyl.PopulationOECD();
 
             Assert.That(expected, Is.EqualTo(result));
 
@@ -478,36 +354,6 @@ namespace WorldDb.Test
 
 
             Assert.That(expected, Is.EqualTo(result));
-        }
-
-        [Test]
-        public void GoodSettlementsTest()
-        {
-            List<Settlement> expected = new()
-            {
-                new Settlement()
-                {
-                    HDI = 0.84,
-                    SettlementID = 3,
-                    Population = 221230,
-                    SettlementName = "Ártatlan település",
-                    Citizens = new List<Citizen>()
-                    {
-                        new Citizen()
-                        {
-                            PersonID = 8,
-                            Name = "Nyolcadik Nyafika",
-                            BirthDate = new DateTime(1955,05,05),
-                            HasCriminalRecord = false,
-                            IncomeInUSD = 23423
-                        }
-                    }
-                }
-            };
-
-            var result = sl.GoodSettlements();
-            Assert.That(expected, Is.EqualTo(result));
-            ;
         }
 
         [Test]
