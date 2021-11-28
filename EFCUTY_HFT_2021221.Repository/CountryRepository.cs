@@ -38,7 +38,7 @@ namespace EFCUTY_HFT_2021221.Repository
 
         public void Delete(int id)
         {
-            db.Remove(Read(id));
+            db.Countries.Remove(Read(id));
             db.SaveChanges();
         }
 
@@ -46,7 +46,5 @@ namespace EFCUTY_HFT_2021221.Repository
         {
             return db.Countries;
         }
-
-
     }
 }

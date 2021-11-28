@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
+
 
 namespace EFCUTY_HFT_2021221.Models
 {
@@ -13,9 +15,11 @@ namespace EFCUTY_HFT_2021221.Models
         public int CountryID { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Settlement> Settlements { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Citizen> Citizens { get; set; }
 
         public string Name { get; set; }
@@ -38,6 +42,11 @@ namespace EFCUTY_HFT_2021221.Models
         public override bool Equals(object obj)
         {
             return this.GetHashCode().Equals(obj.GetHashCode());
+        }
+
+        public override string ToString()
+        {
+            return "---- DETAILS ----\n\tName and country: " + Name + "\n\tID: " + CountryID + "\n\tTotal yearly GDP in million USD: " + TotalGDPInMillionUSD + "\n\tLogical value of it being an OECD member: " + IsOECDMember + "\n---- DETAILS ----";
         }
     }
 }

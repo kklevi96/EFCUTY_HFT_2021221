@@ -17,14 +17,14 @@ namespace EFCUTY_HFT_2021221.Logic
             this.countryRepository = countryRepository;
         }
 
-
-
         public void Create(Country country)
         {
             if (country.TotalGDPInMillionUSD < 100)
                 throw new ArgumentException("A country just can't be that poor!");
             if (ThisNameExists(country.Name))
                 throw new ArgumentException("The country with this name already exists!");
+            if (country.Name == "")
+                throw new ArgumentException("Country must have a name!");
             countryRepository.Create(country);
         }
 
@@ -37,14 +37,15 @@ namespace EFCUTY_HFT_2021221.Logic
         {
             if (country.TotalGDPInMillionUSD < 100)
                 throw new ArgumentException("A country just can't be that poor!");
-            if (ThisNameExists(country.Name))
-                throw new ArgumentException("The country with this name already exists!");
+            if (country.Name == "")
+                throw new ArgumentException("Country must have a name!");
             countryRepository.Update(country);
         }
 
         public void Delete(int id)
         {
-            countryRepository.Delete(id);
+            if(CanBeDeleted(id))
+                countryRepository.Delete(id);
         }
 
         public IEnumerable<Country> ReadAll()
@@ -54,11 +55,17 @@ namespace EFCUTY_HFT_2021221.Logic
 
         //noncrud 1: which countries have a GDP per capita less than 10000 USD?
 
-        public IEnumerable<Country> PoorCountries()
+        public IEnumerable<KeyValuePair<string,int>> PoorCountries()
         {
             return from x in countryRepository.ReadAll()
-                   where x.TotalGDPInMillionUSD / CountPopulation(x) < 10
-                   select x;
+                   where (double)x.TotalGDPInMillionUSD / x.Settlements
+                                                    .Select(y => y.Population)
+                                                    .Sum() < 0.01
+                   select new KeyValuePair<string,int>
+                   (
+                       x.Name,
+                       x.TotalGDPInMillionUSD
+                   );
         }
 
         //helper method for noncrud 1
@@ -70,15 +77,16 @@ namespace EFCUTY_HFT_2021221.Logic
                 .Sum();
         }
 
-        //noncrud 2: list the population of the OECD member countries
-        public IEnumerable<KeyValuePair<string, int>> PopulationOECD()
+        //noncrud 2: list the population of all countries
+        public IEnumerable<KeyValuePair<string, int>> Population()
         {
             return from x in countryRepository.ReadAll()
-                   where x.IsOECDMember
                    select new KeyValuePair<string, int>
                    (
                        x.Name,
-                       CountPopulation(x)
+                       x.Settlements
+                       .Select(y => y.Population)
+                       .Sum()
                    );
         }
 
@@ -94,6 +102,11 @@ namespace EFCUTY_HFT_2021221.Logic
                 .Any(x => x.Name == name);
         }
 
-
+        //helper method to Delete
+        public bool CanBeDeleted(int id)
+        {
+            Country country = Read(id);
+            return country.Citizens.Count == 0 && country.Settlements.Count == 0;
+        }
     }
 }

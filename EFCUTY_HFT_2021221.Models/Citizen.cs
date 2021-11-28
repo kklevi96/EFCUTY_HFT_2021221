@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+
 
 namespace EFCUTY_HFT_2021221.Models
 {
@@ -25,29 +21,29 @@ namespace EFCUTY_HFT_2021221.Models
         public int IncomeInUSD { get; set; }
 
         [NotMapped]
-        [JsonIgnore]
+        //[JsonIgnore]
         public virtual Country Citizenship { get; set; }
 
         [ForeignKey(nameof(Country))]
         public int CitizenshipID { get; set; }
         
         [NotMapped]
-        [JsonIgnore]
+        //[JsonIgnore]
         public virtual Settlement Settlement { get; set; }
 
-        [ForeignKey(nameof(Models.Settlement))]
+        [ForeignKey(nameof(Settlement))]
         public int SettlementID { get; set; }
-
-
-        public override int GetHashCode()
-        {
-            return this.BirthDate.GetHashCode() * this.PersonID.GetHashCode() + this.Name.GetHashCode();
-        }
 
         public override bool Equals(object obj)
         {
-            return this.GetHashCode().Equals(obj.GetHashCode());
+            return this.PersonID == PersonID;
         }
 
+        public override string ToString()
+        {
+            return "---- DETAILS ----\n\tName: " + Name + "\n\tID: " + PersonID + "\n\tBorn " + BirthDate +"\n\tHas a citizenship of " +Citizenship.Name + "\n\tLives in " + Settlement.SettlementName +
+                "\n\tIncome is " + IncomeInUSD + " USD" + "\n\tCriminal record: " + HasCriminalRecord + "\n---- DETAILS ----"; 
+            //return "";
+        }
     }
 }
