@@ -18,8 +18,10 @@ namespace EFCUTY_HFT_2021221.Client
 
         private void Init(string baseurl)
         {
-            client = new HttpClient();
-            client.BaseAddress = new Uri(baseurl);
+            client = new HttpClient
+            {
+                BaseAddress = new Uri(baseurl)
+            };
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue
@@ -35,9 +37,9 @@ namespace EFCUTY_HFT_2021221.Client
 
         }
 
-        public List<T> Get<T>(string endpoint)
+        public IEnumerable<T> Get<T>(string endpoint)
         {
-            List<T> items = new List<T>();
+            List<T> items = new();
             HttpResponseMessage response = client.GetAsync(endpoint).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
@@ -48,7 +50,7 @@ namespace EFCUTY_HFT_2021221.Client
 
         public T GetSingle<T>(string endpoint)
         {
-            T item = default(T);
+            T item = default;
             HttpResponseMessage response = client.GetAsync(endpoint).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
@@ -59,7 +61,7 @@ namespace EFCUTY_HFT_2021221.Client
 
         public T Get<T>(int id, string endpoint)
         {
-            T item = default(T);
+            T item = default;
             HttpResponseMessage response = client.GetAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
