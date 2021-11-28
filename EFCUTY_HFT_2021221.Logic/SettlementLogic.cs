@@ -23,6 +23,8 @@ namespace EFCUTY_HFT_2021221.Logic
                 throw new ArgumentException("HDI must be between 0 and 1!");
             if (settlement.Population < 1)
                 throw new ArgumentException("There must be at least one person who lives in the settlement!");
+            if (settlement.SettlementName == "")
+                throw new ArgumentException("Settlement must have a name!");
             settlementRepository.Create(settlement);
         }
 
@@ -37,12 +39,15 @@ namespace EFCUTY_HFT_2021221.Logic
                 throw new ArgumentException("HDI must be between 0 and 1!");
             if (settlement.Population < 1)
                 throw new ArgumentException("There must be at least one person who lives in the settlement!");
+            if (settlement.SettlementName == "")
+                throw new ArgumentException("Settlement must have a name!");
             settlementRepository.Update(settlement);
         }
 
         public void Delete(int id)
         {
-            settlementRepository.Delete(id);
+            if (CanBeDeleted(id))
+                settlementRepository.Delete(id);
         }
 
         public IEnumerable<Settlement> ReadAll()
@@ -66,6 +71,13 @@ namespace EFCUTY_HFT_2021221.Logic
                    group x by x.Country.Name into g
                    select new KeyValuePair<string, double>
                    (g.Key, g.Average(t => t.HDI));
+        }
+
+        //helper method for delete
+        public bool CanBeDeleted(int id)
+        {
+            Settlement settlement = Read(id);
+            return settlement.Citizens.Count == 0;
         }
     }
 }

@@ -8,8 +8,8 @@ namespace EFCUTY_HFT_2021221.Logic
         void Create(Country country);
         void Delete(int id);
         IEnumerable<Country> ReadAll();
-        IEnumerable<Country> PoorCountries();
-        IEnumerable<KeyValuePair<string, int>> PopulationOECD();
+        IEnumerable<KeyValuePair<string, int>> PoorCountries();
+        IEnumerable<KeyValuePair<string, int>> Population();
         Country Read(int id);
         bool ThisNameExists(string name);
         void Update(Country country);
