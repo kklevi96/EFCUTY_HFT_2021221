@@ -18,11 +18,20 @@ namespace EFCUTY_HFT_2021221.Logic
         public void Create(Country country)
         {
             if (country.TotalGDPInMillionUSD < 100)
+            {
                 throw new ArgumentException("A country just can't be that poor!");
+            }
+
             if (ThisNameExists(country.Name))
+            {
                 throw new ArgumentException("The country with this name already exists!");
+            }
+
             if (country.Name == "")
+            {
                 throw new ArgumentException("Country must have a name!");
+            }
+
             countryRepository.Create(country);
         }
 
@@ -34,16 +43,24 @@ namespace EFCUTY_HFT_2021221.Logic
         public void Update(Country country)
         {
             if (country.TotalGDPInMillionUSD < 100)
+            {
                 throw new ArgumentException("A country just can't be that poor!");
+            }
+
             if (country.Name == "")
+            {
                 throw new ArgumentException("Country must have a name!");
+            }
+
             countryRepository.Update(country);
         }
 
         public void Delete(int id)
         {
             if (CanBeDeleted(id))
+            {
                 countryRepository.Delete(id);
+            }
         }
 
         public IEnumerable<Country> ReadAll()

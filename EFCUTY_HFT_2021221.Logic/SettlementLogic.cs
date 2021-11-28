@@ -18,11 +18,20 @@ namespace EFCUTY_HFT_2021221.Logic
         public void Create(Settlement settlement)
         {
             if (settlement.HDI < 0 || settlement.HDI > 1)
+            {
                 throw new ArgumentException("HDI must be between 0 and 1!");
+            }
+
             if (settlement.Population < 1)
+            {
                 throw new ArgumentException("There must be at least one person who lives in the settlement!");
+            }
+
             if (settlement.SettlementName == "")
+            {
                 throw new ArgumentException("Settlement must have a name!");
+            }
+
             settlementRepository.Create(settlement);
         }
 
@@ -34,18 +43,29 @@ namespace EFCUTY_HFT_2021221.Logic
         public void Update(Settlement settlement)
         {
             if (settlement.HDI < 0 || settlement.HDI > 1)
+            {
                 throw new ArgumentException("HDI must be between 0 and 1!");
+            }
+
             if (settlement.Population < 1)
+            {
                 throw new ArgumentException("There must be at least one person who lives in the settlement!");
+            }
+
             if (settlement.SettlementName == "")
+            {
                 throw new ArgumentException("Settlement must have a name!");
+            }
+
             settlementRepository.Update(settlement);
         }
 
         public void Delete(int id)
         {
             if (CanBeDeleted(id))
+            {
                 settlementRepository.Delete(id);
+            }
         }
 
         public IEnumerable<Settlement> ReadAll()
