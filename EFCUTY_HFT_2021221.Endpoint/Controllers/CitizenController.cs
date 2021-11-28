@@ -1,10 +1,7 @@
 ﻿using EFCUTY_HFT_2021221.Logic;
 using EFCUTY_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -40,7 +37,7 @@ namespace EFCUTY_HFT_2021221.Endpoint.Controllers
         [HttpPost]
         public void Post([FromBody] Citizen value)
         {
-                ctl.Create(value);       
+            ctl.Create(value);
         }
 
         // PUT /citizen

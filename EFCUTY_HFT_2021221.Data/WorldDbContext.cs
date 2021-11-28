@@ -1,10 +1,6 @@
 ﻿using EFCUTY_HFT_2021221.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace EFCUTY_HFT_2021221.Data
@@ -21,7 +17,7 @@ namespace EFCUTY_HFT_2021221.Data
             {
                 this.Database.EnsureCreated();
             }
-            catch(Microsoft.Data.SqlClient.SqlException ex)
+            catch (Microsoft.Data.SqlClient.SqlException ex)
             {
                 Console.WriteLine("Fura exception, restartold a progit, általában jó. {0}", ex.Message);
             }

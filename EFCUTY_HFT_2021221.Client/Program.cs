@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using System;
+﻿using ConsoleTools;
 using EFCUTY_HFT_2021221.Models;
-using ConsoleTools;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EFCUTY_HFT_2021221.Client
 {
@@ -121,7 +121,7 @@ namespace EFCUTY_HFT_2021221.Client
             ConsoleMenu submenuNoncrud = new ConsoleMenu(args, level: 1)
                 .Add("Citizens having a criminal record who live in a settlement with a HDI at least 0.9", () =>
                 {
-                    Console.WriteLine(string.Join("\n",rest.Get<Citizen>("citizenstat/developedcriminals")));
+                    Console.WriteLine(string.Join("\n", rest.Get<Citizen>("citizenstat/developedcriminals")));
                     Console.ReadKey();
                 })
                 .Add("Citizens who were born before 1940.01.01 and live in a country which is not a member of OECD", () =>
@@ -380,7 +380,5 @@ namespace EFCUTY_HFT_2021221.Client
             int id = int.Parse(Console.ReadLine());
             rest.Delete(id, "country");
         }
-
-
     }
 }

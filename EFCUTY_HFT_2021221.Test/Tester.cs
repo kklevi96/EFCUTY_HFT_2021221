@@ -194,7 +194,7 @@ namespace WorldDb.Test
                         IncomeInUSD = 23423
                     }
                 }
-                
+
             };
 
             var fakeSettlements = new List<Settlement>()

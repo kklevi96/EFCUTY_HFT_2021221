@@ -3,8 +3,6 @@ using EFCUTY_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EFCUTY_HFT_2021221.Logic
 {
@@ -44,7 +42,7 @@ namespace EFCUTY_HFT_2021221.Logic
 
         public void Delete(int id)
         {
-            if(CanBeDeleted(id))
+            if (CanBeDeleted(id))
                 countryRepository.Delete(id);
         }
 
@@ -55,13 +53,13 @@ namespace EFCUTY_HFT_2021221.Logic
 
         //noncrud 1: which countries have a GDP per capita less than 10000 USD?
 
-        public IEnumerable<KeyValuePair<string,int>> PoorCountries()
+        public IEnumerable<KeyValuePair<string, int>> PoorCountries()
         {
             return from x in countryRepository.ReadAll()
                    where (double)x.TotalGDPInMillionUSD / x.Settlements
                                                     .Select(y => y.Population)
                                                     .Sum() < 0.01
-                   select new KeyValuePair<string,int>
+                   select new KeyValuePair<string, int>
                    (
                        x.Name,
                        x.TotalGDPInMillionUSD

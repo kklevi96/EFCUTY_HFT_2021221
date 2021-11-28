@@ -3,8 +3,6 @@ using EFCUTY_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EFCUTY_HFT_2021221.Logic
 {
@@ -22,7 +20,7 @@ namespace EFCUTY_HFT_2021221.Logic
             DateTime earliest = new(1900, 01, 01);
             if (citizen.BirthDate < earliest)
                 throw new ArgumentException("BirthDate is too early! That citizen is surely dead now.");
-            if (citizen.Name=="")
+            if (citizen.Name == "")
                 throw new ArgumentException("The person must have a name!");
             citizenRepository.Create(citizen);
         }
@@ -61,7 +59,7 @@ namespace EFCUTY_HFT_2021221.Logic
         public IEnumerable<Citizen> PoorOldPeople()
         {
             return from x in citizenRepository.ReadAll()
-                   where x.BirthDate<new DateTime(1940,01,01) && !x.Citizenship.IsOECDMember
+                   where x.BirthDate < new DateTime(1940, 01, 01) && !x.Citizenship.IsOECDMember
                    select x;
         }
     }

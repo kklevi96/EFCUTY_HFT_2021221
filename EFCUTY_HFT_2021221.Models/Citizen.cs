@@ -26,7 +26,7 @@ namespace EFCUTY_HFT_2021221.Models
 
         [ForeignKey(nameof(Country))]
         public int CitizenshipID { get; set; }
-        
+
         [NotMapped]
         //[JsonIgnore]
         public virtual Settlement Settlement { get; set; }
@@ -47,8 +47,8 @@ namespace EFCUTY_HFT_2021221.Models
 
         public override string ToString()
         {
-            return "---- DETAILS ----\n\tName: " + Name + "\n\tID: " + PersonID + "\n\tBorn " + BirthDate +"\n\tHas a citizenship of " +Citizenship.Name + "\n\tLives in " + Settlement.SettlementName +
-                "\n\tIncome is " + IncomeInUSD + " USD" + "\n\tCriminal record: " + HasCriminalRecord + "\n---- DETAILS ----"; 
+            return "---- DETAILS ----\n\tName: " + Name + "\n\tID: " + PersonID + "\n\tBorn " + BirthDate + "\n\tHas a citizenship of " + Citizenship.Name + "\n\tLives in " + Settlement.SettlementName +
+                "\n\tIncome is " + IncomeInUSD + " USD" + "\n\tCriminal record: " + HasCriminalRecord + "\n---- DETAILS ----";
             //return "";
         }
     }
