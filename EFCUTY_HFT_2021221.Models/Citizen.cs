@@ -34,6 +34,12 @@ namespace EFCUTY_HFT_2021221.Models
         [ForeignKey(nameof(Settlement))]
         public int SettlementID { get; set; }
 
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        //this is needed for unit tests
         public override bool Equals(object obj)
         {
             return this.PersonID == PersonID;
