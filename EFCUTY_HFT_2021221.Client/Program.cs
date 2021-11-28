@@ -2,7 +2,6 @@
 using EFCUTY_HFT_2021221.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace EFCUTY_HFT_2021221.Client
 {
@@ -268,7 +267,6 @@ namespace EFCUTY_HFT_2021221.Client
             return rest.Get<Country>(id, "country");
         }
 
-
         public static void UpdateCitizen()
         {
             Console.Write("ID of citizen you would like to update: ");
@@ -297,7 +295,6 @@ namespace EFCUTY_HFT_2021221.Client
                 IncomeInUSD = income
             };
             rest.Put(citizen, "citizen");
-
         }
         public static void UpdateSettlement()
         {
@@ -321,6 +318,7 @@ namespace EFCUTY_HFT_2021221.Client
             };
             rest.Put(settlement, "settlement");
         }
+
         public static void UpdateCountry()
         {
             Console.Write("ID of country you would like to update: ");
@@ -345,18 +343,21 @@ namespace EFCUTY_HFT_2021221.Client
             };
             rest.Put(country, "country");
         }
+
         public static void DeleteCitizen()
         {
             Console.Write("Id of citizen you would like to delete: ");
             int id = int.Parse(Console.ReadLine());
             rest.Delete(id, "citizen");
         }
+
         public static void DeleteSettlement()
         {
             Console.Write("Id of settlement you would like to delete: ");
             int id = int.Parse(Console.ReadLine());
             rest.Delete(id, "settlement");
         }
+
         public static void DeleteCountry()
         {
             Console.Write("Id of country you would like to delete: ");
