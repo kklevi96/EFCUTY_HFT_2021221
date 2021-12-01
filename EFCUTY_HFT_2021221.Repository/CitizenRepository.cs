@@ -25,7 +25,8 @@ namespace EFCUTY_HFT_2021221.Repository
 
         public void Update(Citizen citizen)
         {
-            var oldCitizen = Read(citizen.CitizenshipID);
+            var oldCitizen = Read(citizen.PersonID);
+            oldCitizen.Name = citizen.Name;
             oldCitizen.SettlementID = citizen.SettlementID;
             oldCitizen.CitizenshipID = citizen.CitizenshipID;
             oldCitizen.HasCriminalRecord = citizen.HasCriminalRecord;
