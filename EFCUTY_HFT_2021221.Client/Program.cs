@@ -31,14 +31,19 @@ namespace EFCUTY_HFT_2021221.Client
                     Console.WriteLine("Citizen created successfully!");
                     Console.ReadKey();
                 })
+                .Add("Read all citizens", () =>
+                {
+                    Console.WriteLine(ReadAllCitizens());
+                    Console.ReadKey();
+                })
                 .Add("Read a citizen", () =>
                 {
                     Console.WriteLine(ReadCitizen());
                     Console.ReadKey();
                 })
-                .Add("Read all citizens", () =>
+                .Add("Update a citizen", () =>
                 {
-                    Console.WriteLine(ReadAllCitizens());
+                    UpdateCitizen();
                     Console.ReadKey();
                 })
                 .Add("Delete a citizen", () =>
