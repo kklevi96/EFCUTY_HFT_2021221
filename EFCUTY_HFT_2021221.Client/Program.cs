@@ -44,6 +44,7 @@ namespace EFCUTY_HFT_2021221.Client
                 .Add("Update a citizen", () =>
                 {
                     UpdateCitizen();
+                    Console.WriteLine("Citizen updated successfully!");
                     Console.ReadKey();
                 })
                 .Add("Delete a citizen", () =>
