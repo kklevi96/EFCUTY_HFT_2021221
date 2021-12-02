@@ -47,7 +47,7 @@ namespace EFCUTY_HFT_2021221.Endpoint.Controllers
             sl.Update(value);
         }
 
-        // /country/[id]
+        // /settlement/[id]
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
