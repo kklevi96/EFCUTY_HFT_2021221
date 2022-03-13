@@ -22,6 +22,7 @@ namespace EFCUTY_HFT_2021221.Endpoint
             services.AddTransient<ISettlementRepository, SettlementRepository>();
             services.AddTransient<ICitizenRepository, CitizenRepository>();
             services.AddTransient<WorldDbContext, WorldDbContext>();
+            services.AddSignalR();
             //services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
 
@@ -40,6 +41,7 @@ namespace EFCUTY_HFT_2021221.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

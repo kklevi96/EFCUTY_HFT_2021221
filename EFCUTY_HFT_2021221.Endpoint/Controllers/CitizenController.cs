@@ -1,6 +1,7 @@
 ﻿using EFCUTY_HFT_2021221.Logic;
 using EFCUTY_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,10 +13,12 @@ namespace EFCUTY_HFT_2021221.Endpoint.Controllers
     public class CitizenController : ControllerBase
     {
         ICitizenLogic ctl;
+        private readonly IHubContext<SignalRHub> hub;
 
-        public CitizenController(ICitizenLogic ctl)
+        public CitizenController(ICitizenLogic ctl, IHubContext<SignalRHub> hub)
         {
             this.ctl = ctl;
+            this.hub = hub;
         }
 
 
