@@ -33,16 +33,24 @@ namespace EFCUTY_HFT_2021221.Models
             Citizens = new HashSet<Citizen>();
         }
 
-        public override int GetHashCode()
-        {
-            return this.Name.GetHashCode() * this.CountryID.GetHashCode() + this.TotalGDPInMillionUSD.GetHashCode();
-        }
-
+        //public override int GetHashCode()
+        //{
+        //    return this.Name.GetHashCode() * this.CountryID.GetHashCode() + this.TotalGDPInMillionUSD.GetHashCode();
+        //}
+        /*
         public override bool Equals(object obj)
         {
-            return this.GetHashCode().Equals(obj.GetHashCode());
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                Country p = (Country)obj;
+                return (p.Name.Equals(this.Name));
+            }
         }
-
+        */
         public override string ToString()
         {
             return "---- DETAILS ----\n\tName: " + Name + "\n\tID: " + CountryID + "\n\tTotal yearly GDP in million USD: " + TotalGDPInMillionUSD + "\n\tLogical value of it being an OECD member: " + IsOECDMember + "\n---- DETAILS ----";
