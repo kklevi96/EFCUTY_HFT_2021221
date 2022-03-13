@@ -19,7 +19,7 @@ namespace EFCUTY_HFT_2021221.Logic
         {
             if (country.TotalGDPInMillionUSD < 100)
             {
-                throw new ArgumentException("A country just can't be that poor!");
+                //throw new ArgumentException("A country just can't be that poor!");
             }
 
             if (ThisNameExists(country.Name))
