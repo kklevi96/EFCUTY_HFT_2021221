@@ -18,11 +18,13 @@ namespace EFCUTY_HFT_2021221.Endpoint.Controllers
             this.hub = hub;
         }
 
+        [HttpGet]
         public IEnumerable<KeyValuePair<string, int>> PoorCountries()
         {
             return cyl.PoorCountries();
         }
 
+        [HttpGet]
         public IEnumerable<KeyValuePair<string, int>> Population()
         {
             return cyl.Population();
