@@ -30,10 +30,6 @@ namespace EFCUTY_HFT_2021221.Endpoint
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EFCUTY_HFT_2021221.Endpoint", Version = "v1" });
             });
             services.AddSignalR();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "EFCUTY_HFT_2021221.Endpoint", Version = "v1" });
-            });
             //services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
 
