@@ -51,9 +51,9 @@ namespace EFCUTY_HFT_2021221.Models
             }
         }
         */
-        public override string ToString()
-        {
-            return "---- DETAILS ----\n\tName: " + Name + "\n\tID: " + CountryID + "\n\tTotal yearly GDP in million USD: " + TotalGDPInMillionUSD + "\n\tLogical value of it being an OECD member: " + IsOECDMember + "\n---- DETAILS ----";
-        }
+        //public override string ToString()
+        //{
+        //    return "---- DETAILS ----\n\tName: " + Name + "\n\tID: " + CountryID + "\n\tTotal yearly GDP in million USD: " + TotalGDPInMillionUSD + "\n\tLogical value of it being an OECD member: " + IsOECDMember + "\n---- DETAILS ----";
+        //}
     }
 }

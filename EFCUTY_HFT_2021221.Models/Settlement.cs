@@ -29,19 +29,19 @@ namespace EFCUTY_HFT_2021221.Models
         [ForeignKey(nameof(Country))]
         public int CountryID { get; set; }
 
-        public override int GetHashCode()
-        {
-            return this.HDI.GetHashCode() * this.SettlementName.GetHashCode() + this.HDI.GetHashCode() * this.Population.GetHashCode();
-        }
+        //public override int GetHashCode()
+        //{
+        //    return this.HDI.GetHashCode() * this.SettlementName.GetHashCode() + this.HDI.GetHashCode() * this.Population.GetHashCode();
+        //}
 
-        public override bool Equals(object obj)
-        {
-            return this.GetHashCode().Equals(obj.GetHashCode());
-        }
+        //public override bool Equals(object obj)
+        //{
+        //    return this.GetHashCode().Equals(obj.GetHashCode());
+        //}
 
-        public override string ToString()
-        {
-            return "---- DETAILS ----\n\tName, Country: " + SettlementName + ", " + Country.Name + "\n\tID:" + SettlementID + "\n\tPopulation: " + Population + "\n\tHDI: " + HDI + "\n---- DETAILS ----";
-        }
+        //public override string ToString()
+        //{
+        //    return "---- DETAILS ----\n\tName, Country: " + SettlementName + ", " + Country.Name + "\n\tID:" + SettlementID + "\n\tPopulation: " + Population + "\n\tHDI: " + HDI + "\n---- DETAILS ----";
+        //}
     }
 }
