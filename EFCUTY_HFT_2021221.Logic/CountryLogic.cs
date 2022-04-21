@@ -1,5 +1,6 @@
 ﻿using EFCUTY_HFT_2021221.Models;
 using EFCUTY_HFT_2021221.Repository;
+//using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,30 +10,37 @@ namespace EFCUTY_HFT_2021221.Logic
     public class CountryLogic : ICountryLogic
     {
         ICountryRepository countryRepository;
+        //IMessenger messenger;
 
         public CountryLogic(ICountryRepository countryRepository)
         {
             this.countryRepository = countryRepository;
+            //this.messenger = messenger;
         }
 
         public void Create(Country country)
         {
             if (country.TotalGDPInMillionUSD < 100)
             {
+                return;
                 //throw new ArgumentException("A country just can't be that poor!");
             }
 
             if (ThisNameExists(country.Name))
             {
-                throw new ArgumentException("The country with this name already exists!");
+                return;
+                //messenger.Send("The country with this name already exists!", "LogicInfo");
             }
 
             if (country.Name == "")
             {
-                throw new ArgumentException("Country must have a name!");
+                return;
+                //messenger.Send("Country must have a name!", "LogicInfo");
             }
 
             countryRepository.Create(country);
+            //messenger.Send("Country created", "LogicInfo");
+
         }
 
         public Country Read(int id)
@@ -44,15 +52,41 @@ namespace EFCUTY_HFT_2021221.Logic
         {
             if (country.TotalGDPInMillionUSD < 100)
             {
-                throw new ArgumentException("A country just can't be that poor!");
+                return;
+                //throw new ArgumentException("A country just can't be that poor!");
             }
+
+            //if (ThisNameExists(country.Name))
+            //{
+                //return;
+                //messenger.Send("The country with this name already exists!", "LogicInfo");
+            //}
 
             if (country.Name == "")
             {
-                throw new ArgumentException("Country must have a name!");
+                return;
+                //messenger.Send("Country must have a name!", "LogicInfo");
             }
 
+
+            //messenger.Send("A country just can't be that poor!", "LogicInfo");
             countryRepository.Update(country);
+
+
+            //if (country.Name == "")
+            //{
+            //    //messenger.Send("Country must have a name!", "LogicInfo");
+            //    return;
+            //}
+            //if(ThisNameExists(country.Name))
+            //{
+            //    return;
+            //}
+            //else
+            //{
+            //    //countryRepository.Update(country);
+            //    //messenger.Send("Country updated", "LogicInfo");
+            //}
         }
 
         public void Delete(int id)
@@ -60,6 +94,11 @@ namespace EFCUTY_HFT_2021221.Logic
             if (CanBeDeleted(id))
             {
                 countryRepository.Delete(id);
+                //messenger.Send("Country deleted", "LogicInfo");
+            }
+            else
+            {
+                //messenger.Send("Country couldn't be deleted as it had settlement(s) and/or citizen(s)", "LogicInfo");
             }
         }
 
