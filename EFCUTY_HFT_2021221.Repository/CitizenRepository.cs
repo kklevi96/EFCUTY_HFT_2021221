@@ -31,6 +31,7 @@ namespace EFCUTY_HFT_2021221.Repository
             oldCitizen.CitizenshipID = citizen.CitizenshipID;
             oldCitizen.HasCriminalRecord = citizen.HasCriminalRecord;
             oldCitizen.IncomeInUSD = citizen.IncomeInUSD;
+            oldCitizen.BirthDate = citizen.BirthDate;
             db.SaveChanges();
         }
 
