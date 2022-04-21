@@ -12,12 +12,12 @@ namespace EFCUTY_HFT_2021221.Endpoint.Controllers
     [ApiController]
     public class SettlementController : ControllerBase
     {
-        ISettlementLogic sl;
-        private readonly IHubContext<SignalRHub> hub;
+        ISettlementLogic logic;
+        IHubContext<SignalRHub> hub;
 
-        public SettlementController(ISettlementLogic sl, IHubContext<SignalRHub> hub)
+        public SettlementController(ISettlementLogic logic, IHubContext<SignalRHub> hub)
         {
-            this.sl = sl;
+            this.logic = logic;
             this.hub = hub;
         }
 
@@ -26,35 +26,41 @@ namespace EFCUTY_HFT_2021221.Endpoint.Controllers
         [HttpGet]
         public IEnumerable<Settlement> Get()
         {
-            return sl.ReadAll();
+            return this.logic.ReadAll();
         }
 
         // GET /settlement/[id]
         [HttpGet("{id}")]
         public Settlement Get(int id)
         {
-            return sl.Read(id);
+            return this.logic.Read(id);
         }
 
         // POST /settlement
         [HttpPost]
         public void Post([FromBody] Settlement value)
         {
-            sl.Create(value);
+            this.logic.Create(value);
+            this.hub.Clients.All.SendAsync("SettlementCreated", value);
+
         }
 
         // PUT /settlement
         [HttpPut]
         public void Put([FromBody] Settlement value)
         {
-            sl.Update(value);
+            this.logic.Update(value);
+            this.hub.Clients.All.SendAsync("SettlementUpdated", value);
+
         }
 
         // /settlement/[id]
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            sl.Delete(id);
+            var settlementToDelete = this.logic.Read(id);
+            this.logic.Delete(id);
+            this.hub.Clients.All.SendAsync("SettlementDeleted", settlementToDelete);
         }
     }
 }

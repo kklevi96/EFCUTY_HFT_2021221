@@ -12,12 +12,12 @@ namespace EFCUTY_HFT_2021221.Endpoint.Controllers
     [ApiController]
     public class CitizenController : ControllerBase
     {
-        ICitizenLogic ctl;
-        private readonly IHubContext<SignalRHub> hub;
+        ICitizenLogic logic;
+        IHubContext<SignalRHub> hub;
 
-        public CitizenController(ICitizenLogic ctl, IHubContext<SignalRHub> hub)
+        public CitizenController(ICitizenLogic logic, IHubContext<SignalRHub> hub)
         {
-            this.ctl = ctl;
+            this.logic = logic;
             this.hub = hub;
         }
 
@@ -26,35 +26,41 @@ namespace EFCUTY_HFT_2021221.Endpoint.Controllers
         [HttpGet]
         public IEnumerable<Citizen> Get()
         {
-            return ctl.ReadAll();
+            return this.logic.ReadAll();
         }
 
         // GET /citizen/[id]
         [HttpGet("{id}")]
         public Citizen Get(int id)
         {
-            return ctl.Read(id);
+            return this.logic.Read(id);
         }
 
         // POST /citizen
         [HttpPost]
         public void Post([FromBody] Citizen value)
         {
-            ctl.Create(value);
+            this.logic.Create(value);
+            this.hub.Clients.All.SendAsync("CitizenCreated", value);
         }
 
         // PUT /citizen
         [HttpPut]
         public void Put([FromBody] Citizen value)
         {
-            ctl.Update(value);
+            this.logic.Update(value);
+            this.hub.Clients.All.SendAsync("CitizenUpdated", value);
+
         }
 
         // /citizen/[id]
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            ctl.Delete(id);
+            var citizenToDelete = this.logic.Read(id);
+            this.logic.Delete(id);
+            this.hub.Clients.All.SendAsync("CitizenDeleted", citizenToDelete);
+
         }
     }
 }

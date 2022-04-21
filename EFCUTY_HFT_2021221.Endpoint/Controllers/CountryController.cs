@@ -12,12 +12,12 @@ namespace EFCUTY_HFT_2021221.Endpoint.Controllers
     [ApiController]
     public class CountryController : ControllerBase
     {
-        ICountryLogic cyl;
-        private readonly IHubContext<SignalRHub> hub;
+        ICountryLogic logic;
+        IHubContext<SignalRHub> hub;
 
-        public CountryController(ICountryLogic cyl, IHubContext<SignalRHub> hub)
+        public CountryController(ICountryLogic logic, IHubContext<SignalRHub> hub)
         {
-            this.cyl = cyl;
+            this.logic = logic;
             this.hub = hub;
         }
 
@@ -26,35 +26,40 @@ namespace EFCUTY_HFT_2021221.Endpoint.Controllers
         [HttpGet]
         public IEnumerable<Country> Get()
         {
-            return cyl.ReadAll();
+            return this.logic.ReadAll();
         }
 
         // GET /country/[id]
         [HttpGet("{id}")]
         public Country Get(int id)
         {
-            return cyl.Read(id);
+            return this.logic.Read(id);
         }
 
         // POST /country
         [HttpPost]
         public void Post([FromBody] Country value)
         {
-            cyl.Create(value);
+            this.logic.Create(value);
+            this.hub.Clients.All.SendAsync("CountryCreated", value);
         }
 
         // PUT /country
         [HttpPut]
         public void Put([FromBody] Country value)
         {
-            cyl.Update(value);
+            this.logic.Update(value);
+            this.hub.Clients.All.SendAsync("CountryUpdated", value);
+
         }
 
         // /country/[id]
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            cyl.Delete(id);
+            var countryToDelete = this.logic.Read(id);
+            this.logic.Delete(id);
+            this.hub.Clients.All.SendAsync("CountryDeleted", countryToDelete);
         }
     }
 }
