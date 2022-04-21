@@ -44,17 +44,6 @@ namespace EFCUTY_HFT_2021221.WPFClient
             }
         }
 
-        //private int selectedCountryID;
-
-        //public int SelectedCountryID
-        //{
-        //    get { return selectedCountryID; }
-        //    set
-        //    {
-        //        selectedCountryID = 
-        //    }
-        //}
-
         public ICommand CreateSettlementCommand { get; set; }
         public ICommand DeleteSettlementCommand { get; set; }
         public ICommand UpdateSettlementCommand { get; set; }
